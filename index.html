@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>StateMint</title>
+		<link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon"/>
+		<link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon"/>
+		<link rel="icon" href="assets/favicon/favicon.png" type="image/png"/>
+		<link rel="icon" href="assets/favicon/favicon.gif" type="image/gif"/>
+		<link rel="stylesheet" href="assets/css/pagination.css">
+		<link rel="stylesheet" href="assets/css/page.css">
+		<link rel="stylesheet" href="assets/css/markdown.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+		<link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+		<link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+		<link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+		<link rel="stylesheet" href="assets/css/Social-Icons.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/axios/dist/axios.standalone.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/CryptoJS/rollups/sha256.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/CryptoJS/components/hmac.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/CryptoJS/components/enc-base64.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/url-template/url-template.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
+		<script type="text/javascript" src="assets/apiGateway-js-sdk/apigClient.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js"></script>
+		<script type="text/javascript" src="assets/js/StateMint.js"></script>
+		<script src="assets/js/piexif.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.2.0/jquery.smooth-scroll.min.js"></script>
+		<script src="assets/js/scroll.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+		<script src="assets/js/bootstrap-notify.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<ul class="scrolling">
+			<li><a href="#page1" class="scrollLink smooth" id="page1button"></a></li>
+			<li><a href="#page2" class="scrollLink smooth" id="page2button"></a></li>
+			<li><a href="#page5" class="scrollLink smooth" id="page3button"></a></li>
+			<li style="display:none" id="page6li"><a href="#page6" class="scrollLink smooth" id="page4button"></a></li>
+		</ul>
+		<div class="page" id="page1">
+			<div class="highlight-clean" style="padding-top:15%;">
+				<div class="container">
+					<section class="intro">
+						<h1 class="text-center">StateMint</h1>
+						<p class="text-center">Derive state models of dynamic systems using Linear Graphs.</p>
+						<img style="margin-left: auto; margin-right: auto; padding: 10pt; margin-bottom: 10px; width: 100%;" src="assets/img/diagram.svg"/>
+						<p class="text-center">
+							View some
+							<a style="color:rgb(60,104,255);" onclick="showExamples()"><strong>examples</strong></a>
+							or an in depth
+							<a style="color:rgb(60,104,255);" data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()"><strong>tutorial</strong></a>.
+						</p>
+					</section>
+					<div class="buttons" style="padding:0px;padding-top:34px;">
+						<a class="btn btn-primary" role="button" onclick="createNew()" style="width:208px;">create new model</a>
+						<button class="btn btn-default" type="button" style="width:208px;" onclick="openExisting()">Open Existing</button>
+					</div>
+				</div>
+			</div>
+			<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+				<a onclick="$('#page2button').click()" style="display: inline-block;"><i class="material-icons" style="color:rgb(3,3,3);">keyboard_arrow_down</i></a>
+			</div>
+		</div>
+		<div class="page" id="page2">
+			<div style="height: 15%"></div>
+				<section class="highlight-blue">
+					<div class="container">
+						<div class="intro">
+							<h2 class="text-center">Upload a photo</h2>
+								<div class="row">
+									<div class="col-lg-12 col-lg-offset-3 col-md-12" style="display:block;margin-left:auto;margin-right:auto;">
+										<i align="center" class="material-icons" style="  font-size:80px;">photo</i>
+										<input type="file" accept="image/*" style="display: none;" id="fileUploadHidden" onchange="addImage(event)"/>
+									</div>
+								</div>
+								<p class="text-center">Supported formats: .png .jpg </p>
+							</div>
+							<div class="buttons">
+								<a class="btn btn-primary" role="button" onclick="$('#fileUploadHidden').click()">Choose a photo</a>
+							</div>
+						</div>
+					</section>
+					<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+						<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
+				</div>
+			</div>
+		</div>
+		<div class="page" id="page3" style="display: none;">
+			<div style="height: 15%"></div>
+				<div class="highlight-blue">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="intro">
+									<h2 class="text-center">Open</h2>
+								</div>
+								<div style="height:40vh;overflow-y:auto">
+									<table class="table table-hover" id="saved">
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="intro">
+									<h2 class="text-center">Upload</h2>
+									<div class="row">
+										<div class="col-md-12"><i class="material-icons" style="padding-left:39%;padding-right:57%;width:460px;font-size:80px;">file_upload</i></div>
+									</div>
+								</div>
+								<input type="file" onchange="importData(event)" accept=".rnd" style="display:none;" id="fileUploadLink"/>
+								<div class="buttons">
+									<a class="btn btn-primary" role="button" onclick="$('#fileUploadLink').click()">Choose a file</a>
+								</div>
+								<div style="padding-top:9px;">
+									<p class="text-center">supported formats: .rnd</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+				<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
+			</div>
+		</div>
+		<div class="page" id="page4" style="display: none;">
+			<div class="highlight-clean">
+				<div class="container">
+					<div class="intro">
+						<h2 class="text-center">Examples </h2>
+						<p class="text-center">These examples show the <a style="color:rgb(60,104,255);" data-toggle="modal" data-target="#commandRef"><strong>syntax</strong></a> and operation of this tool. A <a style="color:rgb(60,104,255);" data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()"><strong>tutorial</strong></a> is also available.</p>
+					</div>
+					<div class="buttons" style="overflow-x: auto; white-space: nowrap;">
+						<a class="btn btn-primary" role="button" onclick="loadExample(1, true)" onmouseover="loadExample(1, false)">Example 1</a>
+						<a class="btn btn-primary" role="button" onclick="loadExample(2, true)" onmouseover="loadExample(2, false)">Example 2</a>
+						<a class="btn btn-primary" role="button" onclick="loadExample(3, true)" onmouseover="loadExample(3, false)">Example 3</a>
+					</div>
+				</div>
+				<div style="height: 30vh">
+					<img id="exampleImage" height="100%" style="margin: auto; padding-top: 5%;"/>
+				</div>
+			</div>
+			<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+				<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
+			</div>
+		</div>
+		<section class="contact-clean" style="background-color:rgb(254,255,255);padding-top:0;padding-bottom:0;" id="page5">
+			<img style="position:fixed;top:10px;left:28px;display:none;max-width:30%;max-height:100%;z-index:1000;" id="systemImage"/>
+			<form method="post">
+				<h2 class="text-center">Enter system equations</h2>
+				<div>
+					<h4><strong>Input Variables:</strong></h4>
+					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of input variables."/>
+					<h4><strong>State Variable Elemental Equations:</strong> </h4>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB" class="form-control" id="StVarElEqns"  data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of state variable elemental equations with the primary variable on the left hand side. If you don't understand this, why not look at the <a data-toggle='modal' data-target='#tutorialRef' onclick='tutorial()'>tutorial</a>."></textarea>
+					<h4><strong>Other Elemental Equations:</strong></h4>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS" class="form-control" id="OtherElEqns" data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of non-state variable elemental equations with the primary variable on the left hand side. If you can't find the function you're looking for, why not look at the <a data-toggle='modal' data-target='#commandRef'>command reference</a>."></textarea>
+					<h4><strong>Constraints:</strong></h4>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS" class="form-control" id="Constraints"  data-toggle="tooltip" data-placement="right" title="A comma seperated list of continuity and compatibility equations with the secondary variable on the left hand side. Why not put each equation on its own line?"></textarea>
+					<h4><strong>Output Variables:</strong></h4>
+					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB" class="form-control" id="OutputVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of output variables already present in the above equations."/>
+					<p class="help-block">Enter your equations, click <a data-toggle="modal" data-target="#commandRef">here</a> for syntax help, or <a data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()">here</a> for a tutorial.</p>
+					<button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;">
+						<svg style="fill:white;transform:translate(0,2pt)" version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M18 7h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2zM18 14h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2z"/></svg>
+						Calculate
+					</button>
+				</div>
+			</form>
+		</section>
+		<div class="social-icons" id="page6button" style="padding-top:0;padding-bottom:0;display:none">
+			<a class="smooth" href="#page6"><i class="material-icons">keyboard_arrow_down</i></a>
+		</div>
+		<div class="page" id="LoadingPage" style="display:none">
+			<a href="#LoadingPage" class="smooth" id="LoadingPageLink"></a>
+			<div style="display:inline-block;width:100vw;height:100vh;">
+				<img src="assets/img/hex-loader2.gif" style="height:80vh;margin-top:10vh;margin-left:auto;margin-right:auto;" />
+			</div>
+		</div>
+		<section class="highlight-clean" id="page6" style="padding-top:1em;padding-bottom:0;min-height:100vh;display:none">
+			<h1 align="center">Results</h1>
+			<div class="container">
+				<div class="intro">
+					<h3 class="text-center">Select a Result Language</h3>
+				</div>
+				<div class="buttons" id="langButtons" style="overflow-x: auto; white-space: nowrap;">
+					<button class="btn btn-default" type="button" id="equationButton" onclick="outlang('Equation')">Equation </button>
+					<button class="btn btn-default" type="button" id="latexButton" onclick="outlang('LaTeX')">latex </button>
+					<button class="btn btn-default" type="button" id="matlabButton" onclick="outlang('Matlab')">matlab </button>
+					<button class="btn btn-default" type="button" id="mathematicaButton" onclick="outlang('Mathematica')">mathematica </button>
+					<button class="btn btn-default" type="button" id="pythonButton" onclick="outlang('Python')">python </button>
+				</div>
+			</div>
+			<div class="container">
+				<div class="intro">
+					<h3 class="text-center">Select a Result Format</h3>
+				</div>
+				<div class="buttons" id="eqButtons" style="overflow-x: auto; white-space: nowrap;">
+					<button class="btn btn-default" type="button" id="vector" onclick="eqform('vector')" style="height:75px">$$x$$</button>
+					<button class="btn btn-default" type="button" id="StateSpace" onclick="eqform('StateSpace')" style="height:75px">$$\dot{x}=Ax+Bu$$</button>
+					<button class="btn btn-default" type="button" id="StateSpaceN" onclick="eqform('StateSpaceN')" style="height:75px">$$\dot{x}=Ax+Bu+E\dot{u}$$</button>
+					<button class="btn btn-default" type="button" id="StateSpaceP" onclick="eqform('StateSpaceP')" style="height:75px">$$\dot{x}'=Ax'+B'u$$</button>
+					<button class="btn btn-default" type="button" id="eq" onclick="eqform('eq')" style="height:75px">$$f(x,u)$$</button>
+					<button class="btn btn-default" type="button" id="TF" onclick="eqform('TF')" style="height:75px">$$H(s)$$</button>
+				</div>
+			</div>
+			<div class="container" id="output" style="display:none;margin-top:3em;">
+				<div class="buttons">
+					<h4></h4>
+					<div style="display:inline-block;vertical-align:middle;">
+						<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+					</div>
+					<button class="btn btn-primary" onclick="copyEq(0)" style="display:inline-block;vertical-align:middle;">Copy</button>
+					<textarea style="display:none"></textarea>
+				</div>
+				<div class="buttons">
+					<h4></h4>
+					<div style="display:inline-block;vertical-align:middle;">
+						<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+					</div>
+					<button class="btn btn-primary" onclick="copyEq(1)" style="display:inline-block;vertical-align:middle;">Copy</button>
+					<textarea style="display:none"></textarea>
+				</div>
+				<div class="buttons">
+					<h4></h4>
+					<div style="display:inline-block;vertical-align:middle;">
+						<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+					</div>
+					<button class="btn btn-primary" onclick="copyEq(2)" style="display:inline-block;vertical-align:middle;">Copy</button>
+					<textarea style="display:none"></textarea>
+				</div>
+				<div class="buttons">
+					<h4></h4>
+					<div style="display:inline-block;vertical-align:middle;">
+						<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+					</div>
+					<button class="btn btn-primary" onclick="copyEq(3)" style="display:inline-block;vertical-align:middle;">Copy</button>
+					<textarea style="display:none"></textarea>
+				</div>
+				<div class="buttons">
+					<h4></h4>
+					<div style="display:inline-block;vertical-align:middle;">
+						<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+					</div>
+					<button class="btn btn-primary" onclick="copyEq(4)" style="display:inline-block;vertical-align:middle;">Copy</button>
+					<textarea style="display:none"></textarea>
+				</div>
+				<div class="buttons">
+					<h4></h4>
+					<div style="display:inline-block;vertical-align:middle;">
+						<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+					</div>
+					<button class="btn btn-primary" onclick="copyEq(5)" style="display:inline-block;vertical-align:middle;">Copy</button>
+					<textarea style="display:none"></textarea>
+				</div>
+			</div>
+			<div class="highlight-clean">
+				<div class="container">
+					<div class="buttons">
+						<a class="btn btn-primary" role="button" style="height:60px;" onclick="restart()">Start Over<i class="material-icons">fast_rewind</i></a>
+						<a class="btn btn-default" role="button" style="height:60px;" data-toggle="modal" data-target="#saveRef">Save<i class="material-icons">save</i></a>
+						<a class="btn btn-default" role="button" style="height:60px;" onclick="share()">Share<i class="material-icons">share</i></a>
+						<textarea style="display:none" id="shareArea"></textarea>
+						<button class="btn btn-default" type="button" style="height:60px;" onclick="download()">Download<i class="material-icons">file_download</i></button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="modal fade" id="commandRef" tabindex="-1" role="dialog" aria-labelledby="commandRefTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="commandRefTitle"><strong>Command Reference</strong></h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel-group" id="refAccordion" role="tablist" aria-multiselectable="true">
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="algebraHeading">
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse" data-parent="#refAccordion" href="#algebraRef" aria-expanded="false" aria-controls="algebraRef">
+											Basics
+										</a>
+									</h4>
+								</div>
+								<div id="algebraRef" class="panel-collapse collapse" role=tabpanel" area-labelledby="algebraHeading">
+									<div class="panel-body">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Command</th>
+													<th scope="col">Usage</th>
+												</tr>
+											</thead>
+											<tbody style="font-weight:normal">
+												<tr>
+													<td scope="row"><samp>a+b</samp></td>
+													<td>The sum of <samp>a</samp> and <samp>b</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>a-b</samp></td>
+													<td>Subtract <samp>b</samp> from <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>a*b</samp></td>
+													<td>Multiply <samp>a</samp> and <samp>b</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>a/b</samp></td>
+													<td>Divide <samp>a</samp> by <samp>b</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>a'</samp></td>
+													<td>The time derivative of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>t</samp></td>
+													<td>The variable denoting time</td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>a**b</samp></td>
+													<td>Raise <samp>a</samp> to the <samp>b</samp> power</td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>sqrt(a)</td>
+													<td>The square root of <samp>a</td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>(a+b)*c</samp></td>
+													<td>Denote modifications to order of operations with parenthesis</td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>exp(a)</td>
+													<td>The natural number <var>e</var> raised to the power <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>log(a)</td>
+													<td>The natural logarithm of <samp>a</td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>log(a, b)</samp></td>
+													<td>The logarithm of <samp>a</samp> in base <samp>b</samp></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="trigHeading">
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse" data-parent="#refAccordion" href="#trigRef" aria-expanded="false" aria-controls="trigRef">
+											Trigonometry
+										</a>
+									</h4>
+								</div>
+								<div id="trigRef" class="panel-collapse collapse" role=tabpanel" area-labelledby="trigHeading">
+									<div class="panel-body">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Command</th>
+													<th scope="col">Usage</th>
+												</tr>
+											</thead>
+											<tbody style="font-weight:normal">
+												<tr>
+													<td scope="row"><samp>cos(a)</samp></td>
+													<td>The cosine of <samp>a</td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>sin(a)</samp></td>
+													<td>The sine of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>tan(a)</samp></td>
+													<td>The tangent of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>cot(a)</samp></td>
+													<td>The cotangent of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>sec(a)</samp></td>
+													<td>The secant of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>csc(a)</samp></td>
+													<td>The cosecant of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>sinc(a)</samp></td>
+													<td>The unnormalized cardinal sine of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>asin(a)</samp></td>
+													<td>The inverse sine of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>acos(a)</samp></td>
+													<td>The inverse cosine of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>atan(a)</samp></td>
+													<td>The inverse tangent of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>acot(a)</samp></td>
+													<td>The inverse cotangent of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>asec(a)</samp></td>
+													<td>The inverse secant of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>acsc(a)</samp></td>
+													<td>The inverse cosecant of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>atan2(a, b)</samp></td>
+													<td>The inverse tangent of <samp>a</samp> divided by <samp>b</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>sinh(a)</samp></td>
+													<td>The hyperbolic sine of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>cosh(a)</samp></td>
+													<td>The hyperbolic cosine of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>tanh(a)</samp></td>
+													<td>The hyperbolic tangent of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>coth(a)</samp></td>
+													<td>The hyperbolic cotangent of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>sech(a)</samp></td>
+													<td>The hyperbolic secant of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>csch(a)</samp></td>
+													<td>The hyperbolic cosecant of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>asinh(a)</samp></td>
+													<td>The inverse hyperbolic sine of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>acosh(a)</samp></td>
+													<td>The inverse hyperbolic cosine of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>atanh(a)</samp></td>
+													<td>The inverse hyperbolic tangent of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>acoth(a)</samp></td>
+													<td>The inverse hyperbolic cotangent of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>asech(a)</samp></td>
+													<td>The inverse hyperbolic secant of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>acsch(a)</samp></td>
+													<td>The inverse hyperbolic cosecant of <samp>a</samp></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="complexHeading">
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse" data-parent="#refAccordion" href="#complexRef" aria-expanded="false" aria-controls="complexRef">
+											Complex
+										</a>
+									</h4>
+								</div>
+								<div id="complexRef" class="panel-collapse collapse" role=tabpanel" area-labelledby="complexHeading">
+									<div class="panel-body">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Command</th>
+													<th scope="col">Usage</th>
+												</tr>
+											</thead>
+											<tbody style="font-weight:normal">
+												<tr>
+													<td scope="row"><samp>I</samp></td>
+													<td>The imaginary number defined as <samp>sqrt(-1)</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>re(a)</samp></td>
+													<td>The real part of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>im(a)</samp></td>
+													<td>The imaginary part of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>Abs(a)</samp></td>
+													<td>The absolute value of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>arg(a)</samp></td>
+													<td>The argument (angle) of <samp>a</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>conjugate(a)</samp></td>
+													<td>The complex conjugate of <samp>a</samp></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="advancedHeading">
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse" data-parent="#refAccordion" href="#advancedRef" aria-expanded="false" aria-controls="advancedRef">
+											Advanced
+										</a>
+									</h4>
+								</div>
+								<div id="advancedRef" class="panel-collapse collapse" role=tabpanel" area-labelledby="advancedHeading">
+									<div class="panel-body">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Command</th>
+													<th scope="col">Usage</th>
+												</tr>
+											</thead>
+											<tbody style="font-weight:normal">
+												<tr>
+													<td scope="row"><samp>ceiling(a)</samp></td>
+													<td>The value of <samp>a</samp> rounded up to the nearest integer</td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>floor(a)</samp></td>
+													<td>The value of <samp>a</samp> rounded down to the nearest integer</td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>sign(a)</samp></td>
+													<td>The sign function of <samp>a</samp></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="highlight-clean" style="padding:0">
+							<div class="buttons" style="text-align:right">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="saveRef" tabindex="-1" role="dialog" aria-labelledby="saveRefTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="saveRefTitle"><strong>Save</strong></h4>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+							<h4 class="col-sm-2" style="width:auto;padding-right:0">Name:</h4>
+							<div class="col-sm-10">
+							<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" class="form-control" id="saveName" placeholder="Project Name">
+							</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div class="highlight-clean" style="padding:0">
+							<div class="buttons" style="text-align:right">
+								<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="save()">Save</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="tutorialRef" tabindex="-1" role="dialog" aria-labelledby="tutorialRefTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="tutorialRefTitle"><strong>Tutorial</strong></h4>
+					</div>
+					<div class="modal-body markdown">
+					</div>
+					<div class="modal-footer">
+						<div class="highlight-clean" style="padding:0">
+							<div class="buttons" style="text-align:right">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a href="https://github.com/CameronDevine/StateMint" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	</body>
+</html>
