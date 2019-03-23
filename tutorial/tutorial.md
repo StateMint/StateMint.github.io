@@ -2,7 +2,7 @@
 
 The purpose of this tutorial is to give the necessary background information on how to use the StateMint software to those who have some experience with system dynamics but may need a refresher, or are not familiar with the linear graph method.
 To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley.
-Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's university taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
+Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's University taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
 
 ## Background Information
 
@@ -11,9 +11,9 @@ This method of finding a differential equation of a dynamic system works with mu
 ### System Types
 
 In each energy domain, a through-variable, $v$, and an across-variable, $f$, is defined.
-A through-variable is a variable that generally has the same value at each element terminal.
+A _through-variable_ is a variable that generally has the same value at each element terminal.
 It corresponds to a physical quantity that would be measured flowing through an element.
-An across-variable is a variable that generally has a different value at each element terminal.
+An _across-variable_ is a variable that generally has a different value at each element terminal.
 It corresponds to a physical quantity that would be measured across an element or relative to some reference.
 A list of common system types and their through-variables and across-variables can be found below.
 
@@ -27,12 +27,12 @@ A list of common system types and their through-variables and across-variables c
 
 ### Elemental Equations
 
-Within each energy domain, there are multiple element types which can be used to model a system in that domain.
-Across energy domains, these elements can be grouped into three distinct types.
+Within each energy domain, there are multiple element-types which can be used to model a system in that domain.
+Across energy domains, these elements can be grouped into three distinct-types.
 
-#### A Type Elements
+#### A-Type Elements
 
-A type elements are energy storage elements which relate the rate of change of the across-variable to the through-variable of the element.
+_A-type_ elements are energy storage elements which relate the rate of change of the across-variable to the through-variable of the element.
 
 | System Type   | Element             | Elemental Equation         | Parameter
 | ------------- | ------------------- | -------------------------- | ---------
@@ -42,9 +42,9 @@ A type elements are energy storage elements which relate the rate of change of t
 | Fluid         | Fluid Capacitor     | $Q=C_f\frac{dP}{dt}$       | Fluid Capacitance, $C_f$
 | Thermal       | Thermal Capacitance | $q=C_t\frac{dT}{dt}$       | Thermal Capacitance, $C_t$
 
-#### T Type Elements
+#### T-Type Elements
 
-T type elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
+_T-type_ elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
 
 | System Type   | Element          | Elemental Equation                     | Parameter
 | ------------- | ---------------- | -------------------------------------- | ---------
@@ -53,9 +53,9 @@ T type elements are energy storage elements which relate the rate of change of t
 | Electrical    | Inductor         | $v=L\frac{di}{dt}$                     | Inductance, $L$
 | Fluid         | Inertance        | $P=I_f\frac{dQ}{dt}$                   | Fluid Inertance, $I_f$
 
-#### D Type Elements
+#### D-Type Elements
 
-D type elements are strictly dissipative with a linear relationship between through-variables and across-variables.
+_D-type_ elements are strictly dissipative with a linear relationship between through-variables and across-variables.
 
 | System Type   | Element            | Elemental Equation         | Parameter
 | ------------- | ------------------ | -------------------------- | ---------
@@ -68,7 +68,7 @@ D type elements are strictly dissipative with a linear relationship between thro
 #### Transformers
 
 In dynamic systems, energy can flow between multiple domains.
-Transformers are one model for relating the through-variable and across-variable of two energy domains to each other,
+_Transformers_ are one model for relating the through-variable and across-variable of two energy domains to each other,
 
 $\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}TF&0\\0&-1/TF\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$
 
@@ -87,7 +87,7 @@ A few of these are listed below,
 
 #### Gyrators
 
-Gyrators are another tool used to model energy flow between domains.
+_Gyrators_ are another tool used to model energy flow between domains.
 This model relates the across-variable in one energy domain to the through-variable in the other,
 
 $\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}0&GY\\-1/GY&0\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$
@@ -101,47 +101,47 @@ The following elements can be modeled as gyrators,
 
 #### Sources
 
-The final type of element are the ideal sources.
+The final type of element is the _ideal source_.
 Ideal sources provide (potentially arbitrary) external power to a system by specifying either its across-variable or through-variable.
 The former are called across-variable sources and the latter through-variable sources.
 
 ### Linear Graphs
 
-A linear graph is a diagram of the system using "nodes" connected by "branches"
+A _linear graph_ is a diagram of a system that represents its topology via nodes and edges (lines).
 Each node represents an independent across-variable value and is drawn as a dot, or a small circle.
-Branches are created for each element in the system, where power flows between the nodes.
-Branches are drawn as a line between two nodes with an arrow in the direction of the decreasing across-variable.
-A type elements always connect to a ground node in non-electrical systems.
+Edges represent discrete lumped-parameter elements in the system, and through these power flows between the nodes.
+An edge is drawn as a line between two nodes with an arrow specifying a sign assignment for that element (e.g. a voltage drop is positive in the direction of the arrow).
+A-type elements always connect to a ground node in non-electrical systems.
 Arrows on transformers and gyrators always point towards ground.
 An example of a linear graph appears in the Example section of this tutorial.
 
 ### Normal Trees
 
-A normal tree can be constructed to find the system's primay and secondary variables.
-This normal tree should consist of $N-1$ branches from the linear graph where $N$ is the number of nodes in the linear graph.
+A _normal tree_ can be constructed to find the system's primay and secondary variables, defined below.
+This normal tree should consist of $N-1$ edges from the linear graph where $N$ is the number of nodes in the linear graph.
 If multiple ground nodes are present in the linear graph, they should be counted as a single node.
 Since the normal tree must be a tree structure, no loops may be created when constructing the normal tree.
-To construct the normal tree, select branches in the following order.
+To construct the normal tree, select edges in the following order.
 
 1. Across-variable sources
-2. A type elements
-3. Transformers and Gyrators (minimizing the number of T type elements in the normal tree)
-4. D type elements
-5. T type elements
+2. A-type elements
+3. Transformers and Gyrators (minimizing the number of T-type elements in the normal tree)
+4. D-type elements
+5. T-type elements
 
-For transformers, one branch must be selected.
-For gyrators, both or neither branches can be selected.
-The elements in the normal tree are termed normal tree branches, while the elements not in the normal tree are called normal tree links.
+For transformers, one edge must be selected.
+For gyrators, both or neither edges can be selected.
+The elements in the normal tree are termed _branches_, while the elements not in the normal tree are called _links_.
 
 ### Primary and Secondary Variables
 
 Once the normal tree has been created it is trivial to determine the primary and secondary variables.
-Primary variables are defined as,
+_Primary variables_ are defined as,
 
 * Across-variables on normal tree branches and
 * Through-variables on normal tree links.
 
-The secondary variable is the non-primary variable in each element.
+The _secondary variable_ is the non-primary variable in each element.
 In other words the secondary variables are,
 
 * Across-variables on normal tree links
@@ -149,20 +149,20 @@ In other words the secondary variables are,
 
 ### State Variables
 
-The state variables of the system are,
+The _state variables_ of the system are,
 
-* A type elements on normal tree branches and
-* T type elements on normal tree links.
+* A-type elements on normal tree branches and
+* T-type elements on normal tree links.
 
 ### Elemental Equations
 
-We define $B$ as the number of branches in the linear graph and $S$ as the number of sources.
-An elemental equation should be written for each of the $B-S$ non-source branches in the linear graph.
+We define $B$ as the number of edges in the linear graph and $S$ as the number of sources.
+An elemental equation should be written for each of the $B-S$ non-source edges in the linear graph.
 The primary variable must be written on the left hand side of each equation.
 
 ### Continuity Equations
 
-$N-1-S_A$ continuity equations should be found.
+$N-1-S_A$ _continuity equations_ should be found.
 These equations are found by drawing a contour around any number of nodes which cuts through exactly one passive (non source) normal tree branch.
 Next, the sum of the through-variable flowing through the contour determined needs to be found.
 The secondary through-variable should be placed on the left hand side of the resulting equation.
@@ -170,7 +170,7 @@ The secondary through-variable should be placed on the left hand side of the res
 
 ### Compatibility Equations
 
-$B-N+1-S_T$ compatibility equations should be written.
+$B-N+1-S_T$ _compatibility equations_ should be written.
 These equations most have the secondary across-variable on the left side.
 To create these equations, calculate the sum of the across-variables around the loop created when one normal tree link is added to the normal tree.
 An equation should be found by substituting each link into the normal tree.
@@ -199,7 +199,7 @@ To create the normal tree, first the voltage source is selected.
 
 ![Normal Tree](tutorial/tutorial3.svg)
 
-To avoid selecting T type elements (the torsional spring and inductor), The right side of the transformer will be added to the normal tree.
+To avoid selecting T-type elements (the torsional spring and inductor), The right side of the transformer will be added to the normal tree.
 
 ![Normal Tree](tutorial/tutorial4.svg)
 
