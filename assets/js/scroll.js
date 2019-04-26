@@ -5,7 +5,7 @@ function pagination() {
 	if ($('#page6').position().top <= scrolPos && $('#page6').is(':visible')) {
 		$('li').removeClass('activeDot');
 		$('li').eq(3).addClass('activeDot');
-		$('#systemImage').hide();
+		$('#imageContainer').hide();
 	} else if ($('#page5').position().top <= scrolPos) {
 		$('li').removeClass('activeDot');
 		$('li').eq(2).addClass('activeDot');
@@ -16,19 +16,21 @@ function pagination() {
 		} else {
 			nextPage = $('#page5').position().top + $('#page5').height();
 		}
-		if (nextPage - $('#systemImage').height() <= scrolPos) {
-			$('#systemImage').hide();
+		if (nextPage - $('#imageContainer').height() <= scrolPos) {
+			$('#imageContainer').hide();
 		} else {
-			$('#systemImage').show();
+			if ($('#systemImage').prop('src') != '') {
+				$('#imageContainer').show();
+			}
 		}
 	} else if ($('#' + page2id).position().top <= scrolPos) {
 		$('li').removeClass('activeDot');
 		$('li').eq(1).addClass('activeDot');
-		$('#systemImage').hide();
+		$('#imageContainer').hide();
 	} else {
 		$('li').removeClass('activeDot');
 		$('li').eq(0).addClass('activeDot');
-		$('#systemImage').hide();
+		$('#imageContainer').hide();
 	}
 }
 
@@ -46,6 +48,16 @@ function createNew() {
 	$('#page3').hide();
 	$('#page4').hide();
 	$('#page2button').click();
+	jpeg = null;
+	document.getElementById("InVars").value = '';
+	document.getElementById("StVarElEqns").value = '';
+	document.getElementById("OtherElEqns").value = '';
+	document.getElementById("Constraints").value = '';
+	document.getElementById("OutputVars").value = '';
+	$('#systemImage').prop('src', '');
+	$('#page6').hide();
+	$('#inputButtons').show();
+	$('#page6button').hide();
 }
 
 function openExisting() {
